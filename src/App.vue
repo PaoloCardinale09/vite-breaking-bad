@@ -17,4 +17,8 @@ export default {
   <AppMain />
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+body {
+  background-color: #d48f38;
+}
+</style>

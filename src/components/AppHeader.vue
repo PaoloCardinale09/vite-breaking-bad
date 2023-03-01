@@ -10,7 +10,12 @@ export default {
 
 <template>
   <header class="d-flex">
-    <div>icona</div>
+    <div>
+      <img
+        src="https://www.yugioh-card.com/en/wp-content/uploads/2020/09/TCG_logo_500x500.png"
+        alt=""
+      />
+    </div>
     <h1>{{ title }}</h1>
   </header>
 </template>
@@ -19,6 +24,9 @@ export default {
 header {
   height: 5rem;
   align-items: center;
-  background-color: aliceblue;
+  background-color: white;
+}
+img {
+  height: 5rem;
 }
 </style>

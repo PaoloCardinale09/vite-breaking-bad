@@ -10,17 +10,60 @@ export default {
 
   created() {
     axios
-      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=1&offset=0")
+      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0")
       .then((response) => {
-        console.log(response);
-        this.characters = response.data.data[0].archetype;
+        console.log(response.data.data);
+        this.characters = response.data.data;
+        // console.log(this.characters);
       });
   },
 };
 </script>
 
 <template>
-  <div>ciao</div>
+  <div class="card">
+    <div class="top-text">
+      <p class="fw-bold">Founds {{ characters.length }} cards</p>
+    </div>
+    <div class="row row-cols-5">
+      <div class="col" v-for="character in characters">
+        <img
+          :src="character.card_images[0].image_url"
+          alt=""
+          class="img-fluid"
+        />
+        <div class="text text-center pt-3">
+          <h3 class="h4">{{ character.name }}</h3>
+          <p class="text-dark pt-4">{{ character.archetype }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card {
+  background-color: white;
+  padding: 3rem;
+}
+
+.top-text {
+  background-color: black;
+  color: white;
+  height: 3rem;
+
+  p {
+    padding-left: 1rem;
+    line-height: 3rem;
+  }
+}
+.text {
+  background-color: #d48f38;
+  height: 10rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+.col {
+  background-color: white;
+}
+</style>

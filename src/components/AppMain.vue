@@ -11,7 +11,11 @@ export default {
 </script>
 
 <template>
-  <CharacterList />
+  <main>
+    <div class="container">
+      <CharacterList />
+    </div>
+  </main>
 </template>
 
 <style lang="scss" scoped></style>
