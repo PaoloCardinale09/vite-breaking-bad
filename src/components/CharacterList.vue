@@ -1,26 +1,16 @@
 <script>
-import axios from "axios";
 import CharacterCard from "./CharacterCard.vue";
+import { store } from "../data/store";
 
 export default {
   data() {
     return {
-      characters: [],
+      store,
     };
   },
 
   components: {
     CharacterCard,
-  },
-
-  created() {
-    axios
-      .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0")
-      .then((response) => {
-        console.log(response.data.data);
-        this.characters = response.data.data;
-        // console.log(this.characters);
-      });
   },
 };
 </script>
@@ -28,10 +18,10 @@ export default {
 <template>
   <div class="card">
     <div class="top-text">
-      <p class="fw-bold">Founds {{ characters.length }} cards</p>
+      <p class="fw-bold">Founds {{ store.characters.length }} cards</p>
     </div>
     <div class="row row-cols-5">
-      <div class="col" v-for="character in characters">
+      <div class="col" v-for="character in store.characters">
         <CharacterCard
           :pic="character.card_images[0].image_url"
           :name="character.name"
