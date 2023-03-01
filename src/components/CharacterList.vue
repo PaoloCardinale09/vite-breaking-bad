@@ -1,11 +1,16 @@
 <script>
 import axios from "axios";
+import CharacterCard from "./CharacterCard.vue";
 
 export default {
   data() {
     return {
       characters: [],
     };
+  },
+
+  components: {
+    CharacterCard,
   },
 
   created() {
@@ -27,7 +32,12 @@ export default {
     </div>
     <div class="row row-cols-5">
       <div class="col" v-for="character in characters">
-        <img
+        <CharacterCard
+          :pic="character.card_images[0].image_url"
+          :name="character.name"
+          :type="character.archetype"
+        />
+        <!-- <img
           :src="character.card_images[0].image_url"
           alt=""
           class="img-fluid"
@@ -35,7 +45,7 @@ export default {
         <div class="text text-center pt-3">
           <h3 class="h4">{{ character.name }}</h3>
           <p class="text-dark pt-4">{{ character.archetype }}</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -56,14 +66,5 @@ export default {
     padding-left: 1rem;
     line-height: 3rem;
   }
-}
-.text {
-  background-color: #d48f38;
-  height: 10rem;
-  margin-bottom: 1rem;
-  color: white;
-}
-.col {
-  background-color: white;
 }
 </style>
