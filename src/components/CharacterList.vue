@@ -1,21 +1,43 @@
 <script>
 import CharacterCard from "./CharacterCard.vue";
+import BaseSerch from "./BaseSerch.vue";
 import { store } from "../data/store";
+import axios from "axios";
 
 export default {
   data() {
     return {
       store,
+      endpoint: "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0",
     };
   },
 
   components: {
     CharacterCard,
+    BaseSerch,
+  },
+
+  methods: {
+    fetch(url) {
+      axios.get(url).then((response) => {
+        store.characters = response.data.data;
+      });
+    },
+
+    fetchFilteredCards(term) {
+      // console.log(term);
+      this.fetch(`${this.endpoint} &fname=${term}`);
+    },
+  },
+
+  created() {
+    this.fetch(this.endpoint);
   },
 };
 </script>
 
 <template>
+  <BaseSerch placeholder="Search Card" @on-search="fetchFilteredCards" />
   <div class="card">
     <div class="top-text">
       <p class="fw-bold">Founds {{ store.characters.length }} cards</p>

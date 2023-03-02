@@ -11,7 +11,7 @@ export default {
 <template>
   <img :src="pic" alt="" class="img-fluid" />
   <div class="text text-center pt-3">
-    <h3 class="h4">{{ name }}</h3>
+    <h3 class="h5">{{ name }}</h3>
     <p class="text-dark pt-4">{{ type }}</p>
   </div>
 </template>
